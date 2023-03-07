@@ -47,6 +47,10 @@ class PostsController < ApplicationController
     redirect_to posts_url, notice: "Post was successfully destroyed."
   end
 
+  def tag
+    @posts = Post.find_by_tags([params[:tag]])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -55,6 +59,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:name, :body).merge(user: Current.user)
+      params.require(:post).permit(:name, :body, :tags).merge(user: Current.user)
     end
 end

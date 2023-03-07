@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   end
 
   # App routes
-  resources :posts
+  resources :posts do
+    get "/tag/:tag", on: :collection, to: "posts#tag", as: :tag
+  end
   resources :lessons, only: :index
 
   root "pages#home"

@@ -12,6 +12,15 @@
     </strong>
   </p>
 
+  <p class="my-5">
+    Tagged
+    <strong class="font-medium">
+      <% post.tags.each do |tag| %>
+        <%= link_to tag, tag_posts_path(tag: tag), class: "underline text-blue-600 mr-1.5" %>
+      <% end %>
+    </strong>
+  </p>
+
   <div class="prose-lg lg:prose-xl">
     <%= simple_format post.body %>
   </div>

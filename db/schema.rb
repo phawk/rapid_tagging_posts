@@ -10,28 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_18_143039) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_205607) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "email_verification_tokens", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_email_verification_tokens_on_user_id"
   end
 
   create_table "password_reset_tokens", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_password_reset_tokens_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
     t.string "name"
     t.text "body"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.jsonb "tags", default: [], null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "user_agent"
     t.string "ip_address"
     t.datetime "created_at", null: false
